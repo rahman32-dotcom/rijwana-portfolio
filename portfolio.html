@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rijwana Rahman — Cybersecurity Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0A1120;
+    --panel: #101A2E;
+    --panel-2: #0D1526;
+    --border: #21304A;
+    --text: #E7ECF5;
+    --muted: #8FA0BE;
+    --accent: #45BFAC;
+    --accent-dim: #2C7A6E;
+    --warn: #E7A33E;
+    --font-display: "Space Grotesk", "Arial Narrow", Arial, sans-serif;
+    --font-body: "IBM Plex Sans", -apple-system, "Segoe UI", sans-serif;
+    --font-mono: "IBM Plex Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: #F3F5F9;
+      --panel: #FFFFFF;
+      --panel-2: #EBEEF4;
+      --border: #D9E0EB;
+      --text: #101826;
+      --muted: #57647D;
+      --accent: #0E7C6C;
+      --accent-dim: #0A5F53;
+      --warn: #A6650E;
+    }
+  }
+
+  :root[data-theme="light"] {
+    --bg: #F3F5F9;
+    --panel: #FFFFFF;
+    --panel-2: #EBEEF4;
+    --border: #D9E0EB;
+    --text: #101826;
+    --muted: #57647D;
+    --accent: #0E7C6C;
+    --accent-dim: #0A5F53;
+    --warn: #A6650E;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: calc(64px + env(safe-area-inset-top, 0px)); }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--accent); }
+
+  .wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- Top nav ---------- */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    padding-top: env(safe-area-inset-top, 0px);
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 14px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .nav-mark {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+  }
+  .nav-mark strong { color: var(--text); font-weight: 600; }
+  .nav-links {
+    display: flex;
+    gap: 22px;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+  }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    transition: color .15s ease, border-color .15s ease;
+  }
+  .nav-links a:hover { color: var(--accent); border-color: var(--accent); }
+  .nav-links { overflow-x: auto; scrollbar-width: none; }
+  .nav-links::-webkit-scrollbar { display: none; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    padding: 76px 0 48px;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(color-mix(in srgb, var(--accent) 14%, transparent) 1px, transparent 1px),
+      linear-gradient(90deg, color-mix(in srgb, var(--accent) 14%, transparent) 1px, transparent 1px);
+    background-size: 42px 42px;
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 20% 0%, black 20%, transparent 75%);
+    mask-image: radial-gradient(ellipse 70% 60% at 20% 0%, black 20%, transparent 75%);
+    opacity: .55;
+    pointer-events: none;
+  }
+  .hero-inner { position: relative; }
+  .eyebrow-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--accent);
+    border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--border));
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
+    padding: 5px 12px;
+    border-radius: 3px;
+    margin-bottom: 22px;
+  }
+  .eyebrow-status .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent);
+  }
+  h1.name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2.4rem, 6vw, 3.6rem);
+    line-height: 1.04;
+    margin: 0 0 12px;
+    letter-spacing: -0.01em;
+  }
+  .role {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.05rem, 2.4vw, 1.3rem);
+    color: var(--accent);
+    margin: 0 0 22px;
+  }
+  .contact-line {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 22px;
+    font-family: var(--font-mono);
+    font-size: 13.5px;
+    color: var(--muted);
+  }
+  .contact-line a { color: var(--muted); text-decoration: none; }
+  .contact-line a:hover { color: var(--accent); }
+
+  /* ---------- Section shell ---------- */
+  section { padding: 56px 0; border-bottom: 1px solid var(--border); }
+  section:last-of-type { border-bottom: none; }
+  .sec-head {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    margin: 0 0 22px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .summary-text {
+    font-size: 1.02rem;
+    color: var(--text);
+    max-width: 68ch;
+  }
+  .summary-text .hl { color: var(--accent); font-weight: 500; }
+
+  /* ---------- Stat strip ---------- */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-top: 28px;
+  }
+  .stat {
+    background: var(--panel);
+    padding: 18px 16px;
+  }
+  .stat .num {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: var(--warn);
+    display: block;
+  }
+  .stat .label {
+    font-size: 12.5px;
+    color: var(--muted);
+    margin-top: 4px;
+    line-height: 1.35;
+  }
+
+  /* ---------- Experience ---------- */
+  .job { position: relative; padding-left: 22px; margin-bottom: 34px; border-left: 2px solid var(--border); }
+  .job:last-child { margin-bottom: 0; }
+  .job::before {
+    content: "";
+    position: absolute;
+    left: -6px; top: 4px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--accent);
+  }
+  .job-top {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 6px 16px;
+  }
+  .job-org {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.12rem;
+  }
+  .job-loc {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--muted);
+  }
+  .job-role {
+    color: var(--muted);
+    font-style: italic;
+    margin: 2px 0 12px;
+    font-size: 0.96rem;
+  }
+  .job-dates {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+    float: right;
+  }
+  ul.bullets { margin: 0; padding: 0; list-style: none; }
+  ul.bullets li {
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 10px;
+    font-size: 0.96rem;
+  }
+  ul.bullets li:last-child { margin-bottom: 0; }
+  ul.bullets li::before {
+    content: "›";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  ul.bullets .m { font-family: var(--font-mono); color: var(--warn); font-weight: 500; }
+
+  /* ---------- Projects ---------- */
+  .proj-source {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--accent);
+    border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--border));
+    background: color-mix(in srgb, var(--accent) 7%, transparent);
+    padding: 4px 10px;
+    border-radius: 3px;
+  }
+
+  /* ---------- Case studies ---------- */
+  .case {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 14px;
+    background: var(--panel);
+    overflow: hidden;
+  }
+  .case:last-child { margin-bottom: 0; }
+  .case summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 18px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  .case summary::-webkit-details-marker { display: none; }
+  .case summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .case-title { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; }
+  .case-meta { font-family: var(--font-mono); font-size: 12px; color: var(--muted); margin-top: 5px; }
+  .chevron {
+    font-family: var(--font-mono);
+    color: var(--accent);
+    transition: transform .2s ease;
+    flex-shrink: 0;
+    font-size: 14px;
+  }
+  .case[open] .chevron { transform: rotate(90deg); }
+  .case-body { padding: 2px 20px 22px; border-top: 1px solid var(--border); }
+  .case-body p { margin: 14px 0 0; font-size: 0.95rem; }
+  .case-body p:first-child { margin-top: 16px; }
+  .case-body strong.phase { color: var(--accent); }
+  .case-body .m { font-family: var(--font-mono); color: var(--warn); font-weight: 500; }
+  .case .tag-row { margin-top: 16px; }
+  .case-link {
+    display: inline-block;
+    margin-top: 14px;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+  }
+
+  /* ---------- Skills ---------- */
+  .skill-group { margin-bottom: 20px; }
+  .skill-group:last-child { margin-bottom: 0; }
+  .skill-group h4 {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    margin: 0 0 10px;
+    font-weight: 500;
+  }
+  .pill-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill {
+    font-size: 13.5px;
+    padding: 6px 13px;
+    border-radius: 20px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+  }
+
+  /* ---------- Education ---------- */
+  .edu-item { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 16px 0; border-bottom: 1px solid var(--border); }
+  .edu-item:last-child { border-bottom: none; }
+  .edu-school { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; }
+  .edu-degree { color: var(--muted); font-size: 0.92rem; margin-top: 3px; }
+  .edu-right { text-align: right; font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); white-space: nowrap; }
+  .edu-right .gpa { color: var(--accent); display: block; margin-top: 3px; }
+
+  /* ---------- Footer ---------- */
+  footer { padding: 46px 0 calc(46px + env(safe-area-inset-bottom, 0px)); text-align: center; }
+  footer .ping {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+  }
+  footer .big {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.4rem;
+    margin: 10px 0 16px;
+  }
+  footer .contact-line { justify-content: center; }
+
+  @media (max-width: 640px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .nav-inner { padding: 12px 20px; }
+    .wrap { padding: 0 20px; }
+    .job-dates { float: none; display: block; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <span class="nav-mark"><strong>R. Rahman</strong> // cybersecurity</span>
+    <div class="nav-links">
+      <a href="#summary">Summary</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#case-studies">Case Studies</a>
+      <a href="#research">Research</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-grid"></div>
+  <div class="wrap hero-inner">
+    <span class="eyebrow-status"><span class="dot"></span>Open to cybersecurity analyst &amp; GRC roles</span>
+    <h1 class="name">Rijwana Rahman</h1>
+    <p class="role">Cybersecurity Master's Candidate — Vulnerability Management &amp; Risk Analysis</p>
+    <div class="contact-line">
+      <span>Atlantic City, NJ</span>
+      <span>609-727-2603</span>
+      <a href="mailto:rahman32@rowan.edu">rahman32@rowan.edu</a>
+      <a href="https://linkedin.com/in/rijwanarahman28" target="_blank" rel="noopener">linkedin.com/in/rijwanarahman28</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="summary">
+    <h2 class="sec-head">Summary</h2>
+    <p class="summary-text">
+      Cybersecurity master's candidate with hands-on experience in <span class="hl">vulnerability management</span>,
+      <span class="hl">identity and access management</span>, and network and firewall security controls across
+      endpoints, cloud, and infrastructure. Reviews firewall, VLAN, VPN, and Active Directory/Entra ID configurations
+      against frameworks such as NIST CSF 2.0 and PCI DSS, translating technical findings into risk-based
+      recommendations and clear corrective actions for technical and nontechnical stakeholders.
+    </p>
+
+    <div class="stats">
+      <div class="stat"><span class="num">16</span><span class="label">endpoints monitored on a live vulnerability dashboard</span></div>
+      <div class="stat"><span class="num">10–15</span><span class="label">security &amp; event logs triaged weekly</span></div>
+      <div class="stat"><span class="num">30,000+</span><span class="label">record dataset modeled for risk analysis</span></div>
+      <div class="stat"><span class="num">3.60</span><span class="label">GPA, M.S. Cybersecurity, Rowan University</span></div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2 class="sec-head">Professional Experience</h2>
+
+    <div class="job">
+      <div class="job-top">
+        <span class="job-org">Tahshin Construction</span>
+        <span class="job-loc">South Jersey, NJ</span>
+      </div>
+      <div class="job-dates">Jun. 2026 – Aug. 2026</div>
+      <p class="job-role">Cybersecurity Support Analyst, Volunteer Engagement</p>
+      <ul class="bullets">
+        <li>Administered hands-on Windows desktop support, network troubleshooting, and access provisioning for a <span class="m">16-device</span> office, including MFA authentication and firewall/VPN configuration</li>
+        <li>Monitored a vulnerability dashboard covering <span class="m">16 devices</span> three times per week, identifying security findings, prioritizing risks, and reporting remediation needs to stakeholders</li>
+        <li>Reviewed <span class="m">10–15 security and event logs</span> weekly to triage <span class="m">3–5 security incidents</span> per week; supported remediation through <span class="m">2–3 account resets</span> and <span class="m">5–10 patching/update actions</span> weekly</li>
+        <li>Translated technical security findings into clear corrective guidance for <span class="m">2 nontechnical users</span>, supporting timely remediation of account, device, and security issues</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-top">
+        <span class="job-org">First Security Islami Bank PLC</span>
+        <span class="job-loc">Chattogram, Bangladesh</span>
+      </div>
+      <div class="job-dates">Jun. 2021 – Dec. 2021</div>
+      <p class="job-role">Banking Operations and Compliance Analyst, Part-Time</p>
+      <ul class="bullets">
+        <li>Reviewed and verified documentation across <span class="m">10 customer accounts</span>, <span class="m">20–30 transactions</span>, and <span class="m">50+ customer files</span> per week, identifying discrepancies to maintain data accuracy</li>
+        <li>Handled sensitive customer information in line with data confidentiality and regulatory compliance standards, applying risk-awareness and secure information-handling practices across day-to-day account and compliance procedures</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2 class="sec-head">Cybersecurity Projects &amp; Research</h2>
+    <p class="proj-source">Rowan University — Coursework and Lab Projects</p>
+    <ul class="bullets">
+      <li>Analyzed security events and audit-log telemetry using Splunk, translating findings into prioritized risk and remediation recommendations</li>
+      <li>Traced HTTP, DNS, and TCP traffic in Wireshark across multiple labs, including a full TCP three-way handshake, <span class="m">RTT/throughput calculations (~28 KB/s)</span>, and TCP congestion-control phase mapping (slow start, congestion avoidance)</li>
+      <li>Investigated DNS query/response and HTTP caching/authentication flows (conditional GET, 401/Basic Auth), identifying protocol-level security and performance behavior</li>
+      <li>Designed and reviewed VLAN segmentation, DMZ, firewall placement, VPN remote access, Active Directory authentication, MFA, and Zero Trust principles</li>
+      <li>Performed host discovery, port scanning, and vulnerability identification using Nmap and Kali Linux; applied likelihood and impact analysis to prioritize findings</li>
+      <li>Applied NIST CSF 2.0 and financial-sector control principles to assess controls, third-party exposure, and resilience requirements</li>
+      <li>Built a SQLite database from a <span class="m">30,000+ record</span> dataset using Python and wrote SQL queries to compare default-risk rates across client demographics, translating results into a written risk analysis</li>
+    </ul>
+    <div class="tag-row">
+      <span class="tag">Splunk</span>
+      <span class="tag">Wireshark</span>
+      <span class="tag">Nmap</span>
+      <span class="tag">Kali Linux</span>
+      <span class="tag">Python</span>
+      <span class="tag">SQLite / SQL</span>
+      <span class="tag">Active Directory</span>
+      <span class="tag">NIST CSF 2.0</span>
+    </div>
+  </section>
+
+  <section id="case-studies">
+    <h2 class="sec-head">Case Studies</h2>
+
+    <details class="case" open>
+      <summary>
+        <div>
+          <div class="case-title">Redland Community Bank — End-to-End Cybersecurity Program</div>
+          <div class="case-meta">Three-phase term project · Cybersecurity Consultant role · Rowan University</div>
+        </div>
+        <span class="chevron">›</span>
+      </summary>
+      <div class="case-body">
+        <p><strong class="phase">Phase 1 — Audit &amp; Risk Assessment.</strong> Ran a full security audit of a simulated mid-sized bank across physical security, access controls, data protection, network security, backup/recovery, and staff training. Findings included an unlocked server room, MFA enforced for remote access only (not internal logins), shared staff/customer Wi-Fi, backups untested for over a <span class="m">year</span>, and phishing simulations that had never been run despite annual awareness training. Built an asset/threat/vulnerability inventory and rated each risk statement — phishing, disaster-recovery gaps, and outdated ATM software all scored <span class="m">High</span>.</p>
+        <p><strong class="phase">Phase 2 — Business Continuity Plan.</strong> Converted the audit findings into a full BCP: identified critical business functions (account management, online banking, ATM/branch operations, compliance reporting, payroll), assigned recovery strategies with defined recovery-time objectives (<span class="m">4-hour RTO</span> for core banking and IT, <span class="m">6-hour RTO</span> for the ATM network), and wrote an IT Disaster Recovery Plan aligned to NIST SP 800-34 and ISO 22301. Included internal/external communication protocols and a testing cadence of quarterly tabletop exercises plus an annual full-scale recovery test.</p>
+        <p><strong class="phase">Phase 3 — Comprehensive Cybersecurity Program.</strong> Scaled the plan into an executive-level program for a 150,000-customer regulated bank, aligned to NIST CSF, ISO/IEC 27001, the FFIEC Cybersecurity Assessment Tool, GLBA, and PCI-DSS. Set SMART targets — a <span class="m">35%</span> annual reduction in incidents, org-wide MFA by <span class="m">Q4</span>, and cutting the patch cycle from <span class="m">18 days to 72 hours</span> — designed the governance structure (CISO, SOC Manager, Compliance Officer), built a risk-based budget (40% infrastructure, 20% risk/compliance audits, 15% training, 15% incident response, 10% continuity), and delivered a full policy set, SOPs, and process flowcharts (risk management lifecycle, six-phase incident response, access control workflow) as appendices.</p>
+        <div class="tag-row">
+          <span class="tag">NIST CSF</span><span class="tag">ISO 27001</span><span class="tag">FFIEC CAT</span><span class="tag">GLBA</span><span class="tag">PCI-DSS</span><span class="tag">BCP/DR Planning</span>
+        </div>
+      </div>
+    </details>
+
+    <details class="case">
+      <summary>
+        <div>
+          <div class="case-title">PCI-DSS Training for IT Staff</div>
+          <div class="case-meta">Security awareness training deck · Presented as "Secure Banking Solutions"</div>
+        </div>
+        <span class="chevron">›</span>
+      </summary>
+      <div class="case-body">
+        <p>Designed and delivered a PCI-DSS training presentation for a bank's IT staff, opening with an icebreaker on the leading causes of PCI violations — misconfigurations, weak access controls, and inadequate monitoring — before covering the cardholder data elements IT is responsible for protecting (PAN, sensitive authentication data, cardholder name).</p>
+        <p>Walked through IT's core responsibilities in a compliant environment: secure configurations benchmarked against CIS standards, port lockdown and network segmentation, encryption essentials (<span class="m">AES-256</span>, <span class="m">RSA-2048</span>, key management, tokenization), access control practices (AD groups, MFA, no shared accounts, secured service accounts), and monitoring fundamentals (file integrity monitoring, SIEM aggregation, <span class="m">90-day</span> log retention). Set a vulnerability management cadence of quarterly scans, annual penetration tests, and a <span class="m">30-day patch rule</span>, then closed with a scenario challenge on evaluating a database admin's data-export request and a knowledge-check quiz.</p>
+        <div class="tag-row">
+          <span class="tag">PCI-DSS</span><span class="tag">CIS Benchmarks</span><span class="tag">Security Awareness Training</span><span class="tag">SIEM</span>
+        </div>
+      </div>
+    </details>
+
+    <details class="case">
+      <summary>
+        <div>
+          <div class="case-title">TX Super Secret Cloud — Security Procedures &amp; Standards</div>
+          <div class="case-meta">User-access SOP + costed physical security standard</div>
+        </div>
+        <span class="chevron">›</span>
+      </summary>
+      <div class="case-body">
+        <p>Wrote a Standard Operating Procedure for the full user-access lifecycle, aligned to NIST SP 800-63B and ISO/IEC 27001: onboarding with least-privilege role assignment and enforced password complexity, MFA via TOTP or push (Authenticator apps, Duo), quarterly access reviews, immediate deprovisioning on termination, a <span class="m">12-month</span> audit-trail retention requirement, account lockout after <span class="m">five</span> failed logins, and a defined response procedure for a compromised account.</p>
+        <p>Paired it with a Physical Security Standard for the facility, aligned to NIST SP 800-53 and ISO/IEC 27002, priced out control by control: keycard access (<span class="m">$10K</span> install / <span class="m">$3K</span> per year), 4K surveillance with 30-day cloud retention (<span class="m">$8K</span> / <span class="m">$2K</span>), biometric dual-authentication for the server room (<span class="m">$5K</span> / <span class="m">$2K</span>), FM-200 fire suppression and environmental sensors (<span class="m">$4K</span> / <span class="m">$1.5K</span>), and AES-256/TLS 1.3 encryption with daily encrypted backups (<span class="m">$3K</span> / <span class="m">$3K</span>) — a <span class="m">$30K</span> install budget with <span class="m">$20K</span> in annual maintenance.</p>
+        <div class="tag-row">
+          <span class="tag">NIST SP 800-63B</span><span class="tag">NIST SP 800-53</span><span class="tag">ISO 27002</span><span class="tag">IAM Lifecycle</span><span class="tag">Budget Planning</span>
+        </div>
+      </div>
+    </details>
+
+    <details class="case">
+      <summary>
+        <div>
+          <div class="case-title">Clean Desk Policy &amp; Organizational Rollout Strategy</div>
+          <div class="case-meta">Policy + change-management plan · Executive Leadership Team</div>
+        </div>
+        <span class="chevron">›</span>
+      </summary>
+      <div class="case-body">
+        <p>Authored a clean desk policy — securing documents, media, and devices at end of day; locking workstations when unattended; clearing whiteboards; no unattended printouts; escorted-visitor-only work areas — and paired it with the change-management plan to get an organization to actually adopt it.</p>
+        <p>The rollout plan phased in high-risk departments (R&amp;D, Finance) first over a <span class="m">90-day</span> window, built two training tracks (general staff and leadership) tracked through the LMS with automatic reminders at <span class="m">14 days</span>, measured effectiveness through quarterly after-hours spot-check audits, and used a graduated enforcement ladder — written reminder, then formal documentation and retraining, then disciplinary action for repeat violations.</p>
+        <div class="tag-row">
+          <span class="tag">Policy Writing</span><span class="tag">Change Management</span><span class="tag">Security Awareness</span>
+        </div>
+      </div>
+    </details>
+
+    <details class="case">
+      <summary>
+        <div>
+          <div class="case-title">Incident Response Tabletop Exercise — Post-Mortem Reflection</div>
+          <div class="case-meta">Individual incident-response simulation &amp; self-assessment</div>
+        </div>
+        <span class="chevron">›</span>
+      </summary>
+      <div class="case-body">
+        <p>Ran a full cybersecurity incident-response tabletop exercise solo and wrote a post-mortem evaluating personal decision-making, communication, and process discipline under simulated pressure. Identified real strengths — moving through evidence quickly and re-forming hypotheses without waiting on group consensus — alongside honest growth areas, including confirmation-bias risk and scattered lines of inquiry that come with working without a second perspective.</p>
+        <p>Turned the reflection into concrete process changes: adopt a standardized triage checklist, keep more disciplined running documentation of assumptions and timelines while investigating, and run further individual-format tabletop drills to build muscle memory for high-pressure response.</p>
+        <div class="tag-row">
+          <span class="tag">Incident Response</span><span class="tag">Tabletop Exercises</span><span class="tag">Self-Assessment</span>
+        </div>
+      </div>
+    </details>
+
+    <details class="case">
+      <summary>
+        <div>
+          <div class="case-title">CVE-2021-44228 (Log4Shell) — CVSS v3.1 Vulnerability Analysis</div>
+          <div class="case-meta">Technical &amp; business risk analysis · Base Score 10.0 (Critical)</div>
+        </div>
+        <span class="chevron">›</span>
+      </summary>
+      <div class="case-body">
+        <p>Broke down the Log4Shell remote-code-execution vulnerability in Apache Log4j2 end to end: how attacker-controlled JNDI lookup strings get logged and resolved into remote code execution, and a hand-justified CVSS v3.1 vector — <span class="m">AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H</span> — scoring out to a <span class="m">10.0 Critical</span> base score, with a plain-language justification for every metric.</p>
+        <p>Translated the technical score into business risk for an e-commerce environment (customer PII and payment-data exposure, order-processing disruption, outage risk), then delivered a six-point mitigation plan: full Java/Log4j inventory, upgrade to <span class="m">2.17.x+</span>, interim mitigations where upgrading isn't immediately possible, exploitation-specific threat detection, network segmentation with least privilege, and incident-response/backup readiness.</p>
+        <div class="tag-row">
+          <span class="tag">CVSS v3.1</span><span class="tag">Vulnerability Analysis</span><span class="tag">Log4Shell</span><span class="tag">Remediation Planning</span>
+        </div>
+      </div>
+    </details>
+
+    <details class="case">
+      <summary>
+        <div>
+          <div class="case-title">Vulnerability Research Across the Incident Lifecycle</div>
+          <div class="case-meta">Applied research · Before / during / after an attack</div>
+        </div>
+        <span class="chevron">›</span>
+      </summary>
+      <div class="case-body">
+        <p>Examined how vulnerability research changes shape across three phases of an incident. <strong class="phase">Before:</strong> a bank's routine scanning and penetration testing catches an outdated TLS version and an unpatched web server ahead of exploitation. <strong class="phase">During:</strong> a healthcare ransomware responder uses real-time vulnerability research to isolate infected endpoints and block the spread across network shares. <strong class="phase">After:</strong> investigators at a breached tech company trace the exploited misconfigurations and weak passwords back to their root cause to drive remediation and staff retraining.</p>
+        <p>Maintains an active <a href="https://tryhackme.com/p/RIJWANARAHMAN" target="_blank" rel="noopener">TryHackMe profile</a> for continued hands-on practice.</p>
+        <div class="tag-row">
+          <span class="tag">Vulnerability Research</span><span class="tag">Incident Lifecycle</span><span class="tag">TryHackMe</span>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section id="research">
+    <h2 class="sec-head">Research &amp; Technical Writing</h2>
+
+    <details class="case">
+      <summary>
+        <div>
+          <div class="case-title">Network Segmentation &amp; VLAN Security</div>
+          <div class="case-meta">Independent research paper · Network security architecture</div>
+        </div>
+        <span class="chevron">›</span>
+      </summary>
+      <div class="case-body">
+        <p>Traced network segmentation's evolution from flat, single-broadcast-domain networks through costly physical segmentation to VLANs — logical segmentation at Layer 2 under the <span class="m">IEEE 802.1Q</span> tagging standard — and argued for why segmentation remains a cornerstone defense against lateral movement.</p>
+        <p>Worked through a concrete enterprise design (<span class="m">VLAN 10</span> HR, <span class="m">VLAN 20</span> Finance, <span class="m">VLAN 30</span> IT, <span class="m">VLAN 99</span> Management) layered with ACLs, firewalls, and IDS/IPS, then grounded it in industry practice: hospitals separating patient records, medical devices, and guest Wi-Fi for HIPAA; retailers isolating payment systems for PCI-DSS.</p>
+        <p>Covered the real failure modes — misconfiguration, and VLAN hopping via double tagging or switch spoofing — with the corresponding hardening steps (secure trunks, disabling unused ports, quarterly configuration audits), then traced where the field is headed: micro-segmentation, Zero Trust's "never trust, always verify" model, SDN-driven dynamic policy, and AI/ML systems that isolate a compromised device into a restricted VLAN automatically.</p>
+        <div class="tag-row">
+          <span class="tag">Network Segmentation</span><span class="tag">VLANs / 802.1Q</span><span class="tag">Zero Trust</span><span class="tag">SDN</span><span class="tag">PCI-DSS / HIPAA</span>
+        </div>
+      </div>
+    </details>
+
+    <details class="case">
+      <summary>
+        <div>
+          <div class="case-title">Cryptography — Foundations, Systems &amp; Vulnerabilities</div>
+          <div class="case-meta">Three-part research series · Classical ciphers through post-quantum risk</div>
+        </div>
+        <span class="chevron">›</span>
+      </summary>
+      <div class="case-body">
+        <p>Started from first principles — the Caesar cipher's substitution logic and how frequency analysis breaks it — to build up to why modern cryptography needs both a strong algorithm and a well-protected key.</p>
+        <p>Compared the three systems in production use today: symmetric encryption (AES, DES, 3DES — fast, but key distribution scales at <span class="m">n(n−1)/2</span> for n users), asymmetric encryption (RSA, ECC, Diffie-Hellman — solves distribution and enables digital signatures, at the cost of speed and larger keys), and hybrid systems that use asymmetric exchange for a symmetric session key, the pattern behind HTTPS and TLS. Underneath it all: the Euclidean and Extended Euclidean algorithms, Euler's phi function, and Fermat's/Euler's theorems that make RSA key generation possible, and the key-length trade-off where a <span class="m">128-bit</span> symmetric key matches roughly a <span class="m">3072-bit</span> RSA key.</p>
+        <p>Then catalogued where cryptography actually breaks in practice: deprecated algorithms (DES's short key length, MD5/SHA-1 collisions), implementation flaws (side-channel timing/power leakage, padding oracle attacks, insecure ECB-mode usage), key-management failures (weak random number generators, hardcoded or plaintext key storage, missed rotation), protocol-level incidents like Heartbleed and POODLE, and the looming threat of Shor's algorithm on quantum hardware driving the push toward post-quantum cryptography.</p>
+        <div class="tag-row">
+          <span class="tag">Symmetric / Asymmetric Crypto</span><span class="tag">Key Management</span><span class="tag">Side-Channel Attacks</span><span class="tag">Post-Quantum Crypto</span><span class="tag">TLS/SSL</span>
+        </div>
+      </div>
+    </details>
+
+    <details class="case">
+      <summary>
+        <div>
+          <div class="case-title">Digital Forensics &amp; Security</div>
+          <div class="case-meta">Research essay · Investigative techniques &amp; cross-domain application</div>
+        </div>
+        <span class="chevron">›</span>
+      </summary>
+      <div class="case-body">
+        <p>Examined digital forensics as the discipline of identifying, preserving, analyzing, and presenting digital evidence — how investigators recover deleted files, trace unauthorized access, and analyze malware to reconstruct an attack timeline that holds up in legal proceedings — and how that investigative work pairs with proactive controls (firewalls, IDS, MFA) that aim to prevent the incident from happening in the first place.</p>
+        <p>Looked at the field's reach past criminal cases: corporate insider-threat and IP-theft investigations, healthcare breach response for patient records, and personal cases like data recovery or identifying a harassment source — alongside its ongoing challenges of strong encryption, growing data volumes, and attackers who keep adapting their evasion techniques.</p>
+        <div class="tag-row">
+          <span class="tag">Digital Forensics</span><span class="tag">Incident Response</span><span class="tag">Evidence Handling</span><span class="tag">NIST SP 800-86</span>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section id="skills">
+    <h2 class="sec-head">Core Technical Skills</h2>
+    <div class="skill-group">
+      <h4>Security Tools</h4>
+      <div class="pill-row">
+        <span class="pill">Splunk</span><span class="pill">Microsoft Sentinel</span><span class="pill">Nmap</span><span class="pill">Wireshark</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h4>Programming &amp; Systems</h4>
+      <div class="pill-row">
+        <span class="pill">Python</span><span class="pill">Java</span><span class="pill">JavaScript</span><span class="pill">SQL</span><span class="pill">Bash</span><span class="pill">Linux/Unix</span><span class="pill">Active Directory</span><span class="pill">Azure</span><span class="pill">API Integration</span><span class="pill">IDS/IPS</span><span class="pill">Firewalls</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h4>Core Areas</h4>
+      <div class="pill-row">
+        <span class="pill">Vulnerability Management</span><span class="pill">Threat Detection &amp; Hunting</span><span class="pill">Incident Response</span><span class="pill">Security Automation</span><span class="pill">Risk Assessment</span><span class="pill">Log Analysis</span><span class="pill">Penetration Testing</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h4>Frameworks &amp; Compliance</h4>
+      <div class="pill-row">
+        <span class="pill">NIST CSF</span><span class="pill">CIS Benchmarks</span><span class="pill">ISO 27001</span><span class="pill">PCI DSS</span><span class="pill">HIPAA</span><span class="pill">GDPR</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <h2 class="sec-head">Education</h2>
+    <div class="edu-item">
+      <div>
+        <div class="edu-school">Rowan University</div>
+        <div class="edu-degree">Master of Science, Concentration in Cybersecurity</div>
+      </div>
+      <div class="edu-right">Glassboro, NJ<br>Dec. 2026<span class="gpa">GPA 3.60/4.00</span></div>
+    </div>
+    <div class="edu-item">
+      <div>
+        <div class="edu-school">International Islamic University Chittagong</div>
+        <div class="edu-degree">Bachelor of Science, Economics and Banking</div>
+      </div>
+      <div class="edu-right">Chattogram, Bangladesh<br>Dec. 2021<span class="gpa">GPA 3.03/4.00</span></div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact" class="wrap">
+  <p class="ping">// let's connect</p>
+  <p class="big">rahman32@rowan.edu</p>
+  <div class="contact-line">
+    <span>Atlantic City, NJ</span>
+    <span>609-727-2603</span>
+    <a href="https://linkedin.com/in/rijwanarahman28" target="_blank" rel="noopener">linkedin.com/in/rijwanarahman28</a>
+  </div>
+</footer>
+
+</body>
+</html>
